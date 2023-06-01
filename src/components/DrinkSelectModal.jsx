@@ -1,5 +1,4 @@
 import {
-  Button,
 	Center,
 	Flex,
 	Image,
@@ -14,7 +13,8 @@ import {
 	Text,
 	useDisclosure,
 } from "@chakra-ui/react";
-import { ChangeButton } from "./UI/Button";
+import { Button } from "./UI/Button";
+import { useState } from "react";
 
 export const DrinkModal = ({ drink, clickFn }) => {
 	const OverlayOne = () => (
@@ -24,7 +24,7 @@ export const DrinkModal = ({ drink, clickFn }) => {
 		/>
 	);
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const [overlay, setOverlay] = React.useState(<OverlayOne />);
+	const [overlay, setOverlay] = useState(<OverlayOne />);
 
 	return (
 		// <Center flexDir={"column"} gap={4}>
@@ -53,9 +53,9 @@ export const DrinkModal = ({ drink, clickFn }) => {
 				<Button onClick={onOpen} mr={4}>
 					Confirm order
 				</Button>
-				<ChangeButton onClick={() => clickFn()} variant="ghost">
+				<Button onClick={() => clickFn()} variant="ghost">
 					Change selection
-				</ChangeButton>
+				</Button>
 			</Flex>
 
 			<Modal isCentered isOpen={isOpen} onClose={onClose}>
