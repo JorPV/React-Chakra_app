@@ -1,4 +1,5 @@
 import {
+    Button as CButton,
 	Center,
 	Flex,
 	Image,
@@ -27,56 +28,58 @@ export const DrinkModal = ({ drink, clickFn }) => {
 	const [overlay, setOverlay] = useState(<OverlayOne />);
 
 	return (
-		// <Center flexDir={"column"} gap={4}>
-    <>
-    <Button
-				onClick={() => {
-					setOverlay(<OverlayOne />);
-					onOpen();
-				}}
-			>
-				TEST
-			</Button>
-
-			<Heading fontSize={"2xl"} color="gray.600">
+		<Center flexDir={'column'} gap={4}>
+			<Heading fontSize="2rem" mb={5} color="gray.600">
 				Your choice: {drink.name}
 			</Heading>
 			<Image
 				src={drink.imgUrl}
 				w={100}
 				h={100}
-				borderRadius={"2xl"}
+				borderRadius={'2xl'}
 				alt={drink.alt}
 			/>
-			<Text>Your drink will be ready in a few minutes</Text>
+			{/* <Text fontSize="1.5rem" mt="5">Your drink will be ready in a few minutes</Text> */}
 			<Flex mt={4}>
-				<Button onClick={onOpen} mr={4}>
-					Confirm order
-				</Button>
-				<Button onClick={() => clickFn()} variant="ghost">
-					Change selection
-				</Button>
+				    <Button onClick={onOpen} mr={4} fontSize="20">
+				    	Confirm order
+				    </Button>
+				    <Button onClick={() => clickFn()} fontSize="20">
+				    	Change selection
+				    </Button>
 			</Flex>
 
-			<Modal isCentered isOpen={isOpen} onClose={onClose}>
+			<Modal size={['full', 'sm']} isCentered isOpen={isOpen} onClose={onClose}>
 				{overlay}
 				<ModalContent>
 					<ModalHeader>Confirm your order</ModalHeader>
 					<ModalCloseButton />
-					<ModalBody>
-						<Text>1x {drink.name}</Text>
-					</ModalBody>
-					<ModalFooter>
-						<Button colorScheme="teal" mr={4}>
-							Confirm
-						</Button>
-						<Button variant="ghost" onClick={onClose}>
-							Cancel
-						</Button>
+					<ModalBody
+                        height={['full', 'fit-content']}
+                        display="flex"
+                        justifyContent="center"
+                        alignItems={['center']}
+                        flexDir="column"
+                    >
+						<Text fontSize="1.5em" textAlign={['left', 'center']} mb={3}>1x {drink.name}</Text>
+                        <Image
+				            src={drink.imgUrl}
+				            w={100}
+				            h={100}
+				            borderRadius={'2xl'}
+				            alt={drink.alt}
+			            />
+					</ModalBody >
+					<ModalFooter justifyContent="center" alignItems={['center']} gap={10}>
+						    <CButton colorScheme="teal" fontSize="1.2em" variant="ghost" onClick={onClose}>
+						    	Confirm
+						    </CButton>
+						    <CButton colorScheme="teal" fontSize="1.2em"variant="ghost" onClick={onClose}>
+						    	Cancel
+						    </CButton>
 					</ModalFooter>
 				</ModalContent>
 			</Modal>
-      </>
-		// </Center>
+		</Center>
 	);
 };

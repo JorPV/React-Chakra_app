@@ -37,11 +37,10 @@ export const App = () => {
 				<DrinkModal drink={userDrink} clickFn={setUserDrink} />
 			) : (
 				<>
-					<Heading mt={5}>{greetings}</Heading>
+					{greetings}
 					<div className="date-wrapper">
 						<Text fontWeight="600" fontSize="1.5rem" mb={20}>
-							{" "}
-							Today is {day}, {date.toLocaleDateString()}{" "}
+							Today is {day}, {date.toLocaleDateString()}
 						</Text>
 					</div>
 					<DrinkSearch clickFn={setUserDrink} />
